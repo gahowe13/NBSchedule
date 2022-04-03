@@ -1,3 +1,4 @@
+// This is a new line
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";

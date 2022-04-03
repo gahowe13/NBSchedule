@@ -1,3 +1,4 @@
+// New line on shift request
 // import React, { useState, useEffect } from "react";
 // import url from "./index";
 
@@ -8,8 +9,8 @@ export default function ShiftRequest() {
         <thead>
           <tr>
             <th>Name</th>
-            <th>Nights</th>
             <th>Days</th>
+            <th>Nights</th>
             <th>Comments</th>
           </tr>
         </thead>
