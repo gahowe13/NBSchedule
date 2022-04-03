@@ -1,0 +1,142 @@
+/* HEADERS */
+.headerText {
+  text-align: center;
+  margin-bottom: 5vh;
+}
+
+/* TABLES */
+tr,
+th {
+  border: 1px solid lightslategray;
+}
+
+th {
+  background-color: rgb(123, 193, 250);
+}
+
+/* LOGIN */
+
+.form-group {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* SHIFT REQUEST */
+
+.shiftRequest {
+  height: 85vh;
+  width: 100vw;
+  border: 1px solid lightslategray;
+}
+
+#shiftRequestTable {
+  table-layout: fixed;
+  width: 100%;
+  text-align: center;
+}
+
+/* NAV (Does this break the calendar?)*/
+
+.nav {
+  font-family: sans-serif;
+  text-align: center;
+  display: block;
+}
+
+/* CALENDAR */
+
+.calendarRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.tile {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  height: 15vh;
+  border: 1px solid lightslategrey;
+}
+
+.tileDay {
+  font-family: sans-serif;
+}
+
+.submitButton {
+  background-color: SteelBlue;
+  border: none;
+  color: white;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 20px;
+}
+
+.dayOfWeekTitle {
+  text-align: center;
+  font-weight: bold;
+  font-family: sans-serif;
+}
+
+.xTile::before,
+.xTile::after {
+  display: inline;
+  content: "";
+  height: 80%;
+  width: 10%;
+  background-color: black;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+}
+
+.xTile::before {
+  transform: rotate(45deg);
+}
+
+.xTile::after {
+  transform: rotate(-45deg);
+}
+
+.plusTile::before,
+.plusTile::after {
+  margin-top: 10px; /*fix vertical centering*/
+  display: inline;
+  content: "";
+  height: 60%;
+  width: 10%;
+  background-color: red;
+  position: absolute;
+  top: 10%;
+  left: 50%;
+}
+
+.plusTile::after {
+  transform: rotate(90deg);
+}
+
+.noTile {
+  border-style: none;
+}
+
+/* USER MANAGEMENT */
+
+.inputText {
+  margin-left: 3vh;
+}
+
+.createUserButton {
+  margin-left: 3vh;
+}
+
+.sectionText {
+  margin-left: 3vh;
+}
+
+.userList {
+  margin-left: 3vh;
+  margin-top: 8vh;
+}
