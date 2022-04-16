@@ -1,8 +1,19 @@
-// New line on shift request
-// import React, { useState, useEffect } from "react";
-// import url from "./index";
+import axios from "axios";
+import url from "./index";
+import React, { useState, useEffect } from "react";
 
 export default function ShiftRequest() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      const data = await axios.get(
+        `https://${url}.sse.codesandbox.io/users/getall`
+      );
+      setUsers(data.data.data.data); // <Better way to do this?
+    })();
+  }, []);
+
   return (
     <div className="shiftRequest">
       <table id="shiftRequestTable">
@@ -15,14 +26,27 @@ export default function ShiftRequest() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Smith</td>
-            <td>check</td>
-            <td></td>
-            <td>Vacation</td>
-          </tr>
+          {users.map(({ _id, lastName }) => {
+            return (
+              <tr key={_id}>
+                <td>{lastName}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
   );
 }
+
+// useEffect(() => {
+//   (async () => {
+//     const data = await axios.get(
+//       `https://${url}.sse.codesandbox.io/users/getall`
+//     );
+//     setUsers(data.data.data.data);
+//   })();
+// }, []);

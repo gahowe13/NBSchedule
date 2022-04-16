@@ -1,0 +1,14 @@
+4/12/22
+  Figure out the UX of shift selection, then finish the front end of shift selection / shift request
+
+
+4/13/22
+  Create dpinfo schema with the following:
+    dp, dpNumber, dpYear, startDate, endDate, shiftDueDate, scheduleDueDate
+
+  Create an API that allows the submit button to submit a shift request in the database
+    Restructure dprequest schema to include shift requests
+    Restructure user schema to include first and last names
+    Create 8 full mock users in the database
+    Implement a user context to get user info throughout the app (it's in req.user)
+

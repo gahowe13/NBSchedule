@@ -1,13 +1,17 @@
 // This is a new line
 import { StrictMode } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Switch, Routes, Route } from "react-router-dom";
 
-import Nav from "./nav";
+import Navibar from "./navibar";
+import Links from "./links";
 import Login from "./login";
+import Nav from "./nav";
+import DPDisplay from "./dpDisplay";
 import Calendar from "./calendar";
+import Profile from "./profile";
 import UserManagement from "./userManagement";
-import ShiftRequest from "./shiftRequest";
+import ShiftSelection from "./shiftSelection";
 
 const url = "dhbz9m";
 export default url;
@@ -15,23 +19,29 @@ export default url;
 const rootElement = document.getElementById("root");
 ReactDOM.render(
   <StrictMode>
-    <Router>
-      <Routes>
-        <Route path="/" element={<Nav />} />
-        <Route path="login" element={<Login />} />
-        <Route path="shiftRequest" element={<ShiftRequest />} />
-        <Route path="calendar" element={<Calendar />} />
-        <Route path="users" element={<UserManagement />} />
-        <Route
-          path="*"
-          element={
-            <main style={{ padding: "1rem" }}>
-              <p>There's nothing here!</p>
-            </main>
-          }
-        />
-      </Routes>
-    </Router>
+    <main>
+      <Switch>
+        <Navibar />
+        <Routes>
+          <Route path="/" element={<Links />} />
+          <Route path="login" element={<Login />} />
+          <Route path="nav" element={<Nav />} />
+          <Route path="dpdisplay" element={<DPDisplay />} />
+          <Route path="shifts" element={<ShiftSelection />} />
+          <Route path="calendar" element={<Calendar />} />
+          <Route path="profile" element={<Profile />} />
+          <Route path="users" element={<UserManagement />} />
+          <Route
+            path="*"
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>There's nothing here!</p>
+              </main>
+            }
+          />
+        </Routes>
+      </Switch>
+    </main>
   </StrictMode>,
   rootElement
 );

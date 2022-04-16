@@ -5,7 +5,6 @@ import url from "./index";
 //import Tile from "./tile"
 
 export default function Calendar() {
-  //let navigate = useNavigate();
   const [start, setStart] = useState(new Date());
   const [end, setEnd] = useState(new Date());
   const [offDays, setOffDays] = useState({});

@@ -1,7 +1,7 @@
 import "./styles.css";
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import url from "./index";
 axios.defaults.withCredentials = true;
@@ -21,14 +21,14 @@ export default function Login() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email: "createusertest@gmail.com",
-        password: "testpass123"
+        email: "jsmith@gmail.com",
+        password: "pass123"
       }),
       credentials: "include"
     })
       .then((response) => {
         console.log(response);
-        navigate('/calendar')
+        navigate("/calendar");
       })
       .catch((error) => {
         console.log(error);
