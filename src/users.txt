@@ -1,0 +1,50 @@
+{
+    "_id": "6223b64fc6cd98d48c5824ee",
+    "email": "jsmith@gmail.com",
+    "role": "admin",
+    "firstName": "John",
+    "lastName": "Smith"
+},
+{
+    "_id": "6223b704c6cd98d48c5824ef",
+    "email": "kjohnson@gmail.com",
+    "role": "user",
+    "firstName": "Kelly",
+    "lastName": "Johnson"
+},
+{
+    "_id": "6223b72dc6cd98d48c5824f0",
+    "email": "jdoe@gmail.com",
+    "role": "user",
+    "firstName": "John",
+    "lastName": "Doe"
+},
+{
+    "_id": "6223b73bc6cd98d48c5824f1",
+    "email": "rmoreno@gmail.com",
+    "role": "admin",
+    "firstName": "Robert",
+    "lastName": "Moreno"
+},
+{
+    "_id": "6223b7aac6cd98d48c5824f2",
+    "email": "jruiz@gmail.com",
+    "role": "user",
+    "firstName": "Josh",
+    "lastName": "Ruiz"
+},
+{
+    "_id": "6224d7e505647ada68d50c15",
+    "email": "dtaylor@gmail.com",
+    "role": "user",
+    "p": "testpass123",
+    "firstName": "David",
+    "lastName": "Taylor"
+},
+{
+    "_id": "622f889768dab0a6405c95c5",
+    "email": "khenao@gmail.com",
+    "role": "user",
+    "firstName": "Katherine",
+    "lastName": "Henao"
+}

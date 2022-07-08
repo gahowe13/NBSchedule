@@ -1,3 +1,8 @@
+TODO:
+  Protect pages for logged in users only
+  Add error handling for pages with bad URLs (e.g. "/5-2022")
+
+
 4/12/22
   Figure out the UX of shift selection, then finish the front end of shift selection / shift request
 
@@ -11,4 +16,210 @@
     Restructure user schema to include first and last names
     Create 8 full mock users in the database
     Implement a user context to get user info throughout the app (it's in req.user)
+
+4/16/22
+  Create an API that sends shift request data
+
+4/22/22
+  Make user management table display full info
+  Add user management functionality
+    Create/update users
+
+5/9/22
+  Finish calendar functionality
+    DP Label
+    Days off counter
+    
+5/14/22
+  Design a layout for finalized schedule
+
+5/29/22
+  Fix Sign In
+  Functionalize the workflow between calendar and schedule
+    Submit DP request => store DP request => render DP request on schedule
+    Submit DP request for all users
+    Functionalize DP request rendering for each user
+    Create tables for Supervisors, Day Shift, and Night Shift
+
+6/17/22
+  Functionalize the DP Selection and Shift Selection pages
+
+6/20/22
+  Add "dpStatus" to DP model
+
+6/24/22
+  Fix User Management
+  Create a "Manage DPs" page which includes a "Create DP" API.
+  Fix unmounted component thing in dpMangement
+
+6/25/22
+  Add an edit and submit button to DP Management
+
+6/26/22
+  Create an "/editDP" API
+
+6/29/22
+  Make the DP Management interface with the UI (only for status)
+
+6/30/22
+  Fix schedules...
+
+7/1/22
+
+
+-----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+WORKING COPY
+
+
+
+
+
+      <form className="dpManagementEditForm" onSubmit={}>
+
+        <div id="nameInputs">
+
+          <input
+            id="firstNameInput"
+            className="dpmanagementEditInput"
+            type="text"
+            name="firstName"
+            placeholder="First Name"
+            value={firstName}
+            required
+            onChange={(e) => setFirstName(e.target.value)}
+          ></input>
+
+          <input
+            className="dpmanagementEditInput"
+            type="text"
+            name="lastName"
+            placeholder="Last Name"
+            value={lastName}
+            required
+            onChange={(e) => setLastName(e.target.value)}
+          ></input>
+
+        </div>
+
+        <input
+          className="dpmanagementEditInput"
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={email}
+          required
+          onChange={(e) => setEmail(e.target.value)}
+        ></input>
+      
+        <select
+          className="dpmanagementEditInput"
+          id="division"
+          name="division"
+          defaultValue="none"
+          onChange={(e) => setDivision(e.target.value)}
+        >
+          <option value={division} disabled hidden>
+            Division
+          </option>
+          {possibleDivisions.map((division, i) => {
+            return (
+              <option key={i} value={division}>
+                {division}
+              </option>
+            );
+          })}
+        </select>
+
+      </form>
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------
+DISPLAY MODE
+
+
+
+
+<>
+
+   <form className="dpmanagementEditForm">
+
+      <div
+        className="dpManagementTable"
+        key={_id}
+      >
+
+        <div className="dpManagementHeaderRow">
+      	   <label className="label">DP </label>
+	   <input type="number" value={dpInfo.dpNumber}>
+	   <input type="number" value={dpInfo.dpYear}>
+        </div>
+
+        <div className="dpManagementItem">
+	   <label className="label">Status: </label>
+	   Status: {dpInfo.dpStatus}
+	</div>
+
+        <div className="dpManagementItem">
+          {epochToDate(dpInfo.startDate)} - {epochToDate(dpInfo.endDate)}
+        </div>
+
+        <div className="dpManagementItem">
+          Shift due date: {epochToDate(dpInfo.shiftDueDate)}
+        </div>
+
+        <div className="dpManagementItem">
+          Schedule due date: {epochToDate(dpInfo.scheduleDueDate)}
+        </div>
+
+        <div className="dpManagementItem">
+          3-12: {dpInfo.numberOfDaysOff12} days off
+        </div>
+
+        <div className="dpManagementItem">
+          4-10: {dpInfo.numberOfDaysOff10} days off
+        </div>
+
+      </div>
+
+   </form>
+	
+</>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <select
+          className="dpmanagementEditInput"
+          name="dpStatus"
+          defaultValue={dpInfo.dpStatus}
+          onChange={(e) => setDivision(e.target.value)}
+        >
+          {possibleStatuses.map((status, i) => {
+            return (
+              <option key={i} value={status}>
+                {status}
+              </option>
+            );
+          })}
+        </select>
+
+
 

@@ -1,7 +1,55 @@
 /* HEADERS */
 .headerText {
   text-align: center;
-  margin-bottom: 5vh;
+  margin-bottom: 1rem;
+}
+
+/* LOADING */
+.icon__circle-arrow-rotating {
+  --size: 1.7rem;
+  --color: blue;
+  --borderSize: calc(var(--size) * 0.1);
+  box-sizing: border-box;
+  position: relative;
+  width: var(--size);
+  height: var(--size);
+  border-radius: 999px;
+  border-top: var(--borderSize) solid var(--color);
+  border-left: var(--borderSize) solid var(--color);
+  border-right: var(--borderSize) solid transparent;
+  border-bottom: var(--borderSize) solid var(--color);
+  margin-right: 1rem;
+  animation: anim__circle-arrow-rotating 1s linear infinite;
+}
+
+.icon__circle-arrow-rotating::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(var(--size) / 3.14159265359);
+  height: calc(var(--size) / 3.14159265359);
+  border-bottom: calc(var(--size) / 10) solid var(--color);
+  border-right: calc(var(--size) / 10) solid var(--color);
+  transform: rotate(-15deg) translate(100%, -25%) scale(0.8);
+}
+
+@keyframes anim__circle-arrow-rotating {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loadingContainer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+#emptyDivForCenteredStyling {
+  margin-left: 1rem;
+  width: var(--size);
+  height: var(--size);
 }
 
 /* TABLES */
@@ -9,9 +57,11 @@ td,
 tr,
 th {
   border: 1px solid lightslategray !important;
+  border-collapse: collapse;
+  border-spacing: 0 !important;
 }
 
-th {
+#userManagementTable th {
   background-color: rgb(123, 193, 250);
 }
 
@@ -86,10 +136,18 @@ th {
 #dpDisplay {
   display: flex;
   flex-direction: column;
-  height: 80vh;
+  height: 50vh;
   flex: 1 1 auto;
   border: 3px dotted blue;
   justify-content: center;
+}
+
+#dpDisplayTable {
+  text-align: center;
+}
+
+.dpDisplayTableRow {
+  cursor: pointer;
 }
 
 .selectedDP {
@@ -99,17 +157,52 @@ th {
   align-self: center;
 }
 
-.dpPreview {
-  text-align: center;
-  font-weight: bold;
+/* DP MANAGEMENT */
+
+.dpManagementTable {
+  height: 12rem;
+  width: 25rem;
+  border: 1px solid red;
+  margin-bottom: 1rem;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+}
+
+.dpManagementHeaderRow {
+  border: 1px solid blue;
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.dpManagementItem {
+  border: 1px solid blue;
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+}
+
+.dpManagementEditDPButton {
+  position: absolute;
+  right: 1rem;
 }
 
 /* CALENDAR */
 
+#calendarHeaderContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .calendarRow {
   display: grid;
   grid-template-columns: repeat(7, 14.2857%);
-  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr; */
 }
 
 .tile {
@@ -118,6 +211,12 @@ th {
   justify-content: flex-start;
   height: 15vh;
   border: 1px solid lightslategrey;
+  margin-right: -1px;
+  margin-bottom: -1px;
+}
+
+.tile:hover {
+  background-color: #c8cded;
 }
 
 .tileDay {
@@ -134,7 +233,6 @@ th {
   display: inline-block;
   font-size: 16px;
   font-weight: bold;
-  margin: 20px;
 }
 
 .dayOfWeekTitle {
@@ -184,21 +282,140 @@ th {
   border-style: none;
 }
 
-/* USER MANAGEMENT */
+/* SCHEDULE */
 
-.inputText {
-  margin-left: 3vh;
+#schedulePage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.createUserButton {
-  margin-left: 3vh;
+#schedule {
+  display: flex;
+  flex-direction: column;
+  height: 50rem;
+  width: auto;
+}
+
+#scheduleHeader {
+  height: 12%;
+  width: 100%;
+  border: 1px solid black;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#dpLabel {
+  margin-bottom: 0.2rem;
+}
+
+#dpDateLabel {
+  text-align: center;
+}
+
+#scheduleBody {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+#scheduleTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#scheduleTable .offDay:hover {
+  cursor: pointer;
+}
+
+#scheduleTable .weekend {
+  background-color: rgb(180, 180, 180);
+}
+
+.dayOfTheWeek {
+  font-weight: bold;
+}
+
+.dayOfTheMonth {
+  font-weight: bold;
+}
+
+#scheduleTable .weekend,
+#scheduleTable .weekday {
+  width: 1rem;
+  text-align: center;
+}
+
+/* .dayOfTheWeekRow {
+  border-top: 2px solid black !important;
+  border-bottom: 2px solid black !important;
+} */
+
+.selectedScheduleDate {
+  outline: 2px solid red !important;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently supported by Chrome, Opera and Firefox */
+}
+
+/* USER MANAGEMENT */
+
+#userManagement {
+  display: inline;
+}
+
+.userManagementSection {
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
 
 .sectionText {
+  margin-bottom: 0.3rem;
+}
+
+.addEditUserInput {
+  margin-bottom: 0.5rem;
+}
+
+#cancelEditUserButton {
+  margin-bottom: 0.5rem;
+}
+
+#firstNameInput {
+  margin-right: 1rem;
+}
+
+#addEditUserForm {
+  display: flex;
+  flex-direction: column;
+}
+
+#userManagementTable {
   margin-left: 3vh;
 }
 
-.userList {
-  margin-left: 3vh;
-  margin-top: 8vh;
+#userManagementTable th {
+  text-align: center;
+}
+
+#userManagementTable tr:hover {
+  background-color: gold;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.plusDay {
+  font-weight: bolder;
+  color: red;
 }

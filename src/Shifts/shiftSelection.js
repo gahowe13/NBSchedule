@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import url from "./index";
+import axios from "axios";
+import url from "../index";
 import ShiftRequest from "./shiftRequest";
 
 export default function ShiftSelection() {
@@ -7,6 +8,15 @@ export default function ShiftSelection() {
   const [comment, setComment] = useState("");
 
   useEffect(() => {}, [comment]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    const endpoint = `${url}/calendar/shift/8`;
+    axios
+      .post(endpoint, { shift, comment }, { withCredentials: true })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  }
 
   function processClasses(shiftOfButton) {
     return shiftOfButton === shift
@@ -20,29 +30,6 @@ export default function ShiftSelection() {
 
   function handleSetComment(e) {
     setComment(e.target.value);
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    fetch(`https://${url}.sse.codesandbox.io/calendar/shift/8`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        dp: 8,
-        shift,
-        comment
-      }),
-      credentials: "include"
-    })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   }
 
   return (

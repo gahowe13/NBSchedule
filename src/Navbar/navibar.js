@@ -1,4 +1,4 @@
-import "./styles.css";
+import "../styles.css";
 import { NavLink } from "react-router-dom";
 import { Nav, Navbar } from "react-bootstrap";
 
@@ -10,14 +10,20 @@ export default function Navibar() {
         <NavLink className="navibarLink" to="/dpdisplay">
           DPs
         </NavLink>
+        <NavLink className="navibarLink" to="/dpmanagement">
+          DP Management
+        </NavLink>
         <NavLink className="navibarLink" to="/shifts">
           Shifts
         </NavLink>
         <NavLink className="navibarLink" to="/profile">
           Profile
         </NavLink>
-        <NavLink className="navibarLink" to="/calendar">
+        <NavLink className="navibarLink" to="/calendar/6-2022">
           Calendar
+        </NavLink>
+        <NavLink className="navibarLink" to="/schedule/6-2022">
+          Schedule
         </NavLink>
         <NavLink className="navibarLink" to="/login">
           Login

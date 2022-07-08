@@ -1,9 +1,8 @@
-import "./styles.css";
+import "../styles.css";
 import axios from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import url from "./index";
+import url from "../index";
 axios.defaults.withCredentials = true;
 
 export default function Login() {
@@ -12,30 +11,26 @@ export default function Login() {
   const [password, setPassword] = useState("");
   //const [jwt, setJwt] = useState("");
 
-  function handleSubmit(e) {
+  function handleSubmit(e, submittedEmail, submittedPassword) {
     e.preventDefault();
-
-    fetch(`https://${url}.sse.codesandbox.io/users/login`, {
+    fetch(`${url}/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        email: "jsmith@gmail.com",
-        password: "pass123"
+        email: submittedEmail,
+        password: submittedPassword
       }),
       credentials: "include"
     })
       .then((response) => {
-        console.log(response);
-        navigate("/calendar");
+        if (response.status === 200) navigate("/calendar/6-2022");
       })
       .catch((error) => {
         console.log(error);
       });
   }
-
-  useEffect(() => {});
 
   return (
     <div>
@@ -55,7 +50,18 @@ export default function Login() {
           required
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        <button className="btn btn-primary">Login</button>
+        <button
+          className="btn btn-primary"
+          onClick={(e) => handleSubmit(e, email, password)}
+        >
+          Login
+        </button>
+        <button
+          className="btn btn-primary"
+          onClick={(e) => handleSubmit(e, "jsmith@gmail.com", "pass123")}
+        >
+          Login Dev
+        </button>
       </form>
     </div>
   );
